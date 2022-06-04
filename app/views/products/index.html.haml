@@ -1,0 +1,9 @@
+%p{:style => "color: green"}= notice
+%h1 Products
+#products
+  - @products.each do |product|
+    %h1= product.title
+    = image_tag(product.image_url)
+    %p
+      = link_to "Show this product", product
+= link_to "New product", new_product_path
