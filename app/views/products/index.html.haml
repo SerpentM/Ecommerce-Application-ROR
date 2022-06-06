@@ -1,9 +1,15 @@
 %p{:style => "color: green"}= notice
-%h1 Products
-#products
-  - @products.each do |product|
-    %h1= product.title
-    -# = image_tag(product.image_url),
-    %p
-      = link_to "Show this product", product 
-= link_to "New product", new_product_path
+.container-fluid.m-0.p-0.text-center
+  %h1.p-2 Products List
+  #products.row.d-flex.justify-content-center
+    - @products.each do |product|
+      .card.m-2{:style => "width: 18rem;"}
+        =image_tag product.image_url, class: 'card-img-top'
+        .card-body
+          %h5.card-title= product.title
+          %p.card-text= product.description
+          %p.card-text
+            = number_to_currency(product.price) 
+          = link_to "Show this product", product, :class => "btn btn-primary"  
+
+  = link_to "Add New Product", new_product_path, :class => "btn btn-secondary m-3" 
