@@ -1,0 +1,17 @@
+- if notice
+  %aside#notice= notice
+.container-fluid.m-0.p-0.text-center.p-3.row
+  .row.d-flex.justify-content-center.col-10
+    - @products.each do |product|
+      .card.m-2{:style => "width: 18rem;"}
+        =image_tag product.image_url, class: 'card-img-top'
+        .card-body
+          %h5.card-title= product.title
+          %p.card-text= product.description
+          %p.card-text
+            = number_to_currency(product.price) 
+          = link_to "Add to cart", "#", :class => "btn btn-secondary m-3"  
+  .container.cart-contain.col-2
+    .title.d-flex.justify-content-center.p-2
+      %h3.m-2 Cart
+      %i.fa.fa-shopping-cart.fs-2.m-2{"aria-hidden" => "true"}
