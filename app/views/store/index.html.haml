@@ -10,8 +10,28 @@
           %p.card-text= product.description
           %p.card-text
             = number_to_currency(product.price) 
-          = button_to "Add to cart", line_items_path(product_id: product), :class => "btn btn-secondary m-3"  
-  .container.cart-contain.col-2
+          = button_to "Add to cart", line_items_path(product_id: product),remote: true, :class => "btn btn-secondary m-3"  
+  .container.cart-contain
     .title.d-flex.justify-content-center.p-2
       %h3.m-2 Cart
       %i.fa.fa-shopping-cart.fs-2.m-2{"aria-hidden" => "true"}
+    %table.table
+      %thead.thead-dark
+        %tr
+          %th{:scope => "col"} Name
+          %th{:scope => "col"} Quantity
+          %th{:scope => "col"} Price
+      %tbody
+        - @cart.line_items.each do |item, index|
+          %tr
+            %td= item.product.title
+            %td= item.quantity
+            %td= number_to_currency(item.total_price)
+        %tr
+          %td
+            %h5.mt-3 Total :-
+          %td 
+          %td
+            %h5.mt-3= number_to_currency(@cart.total_price)
+  
+      
