@@ -1,5 +1,5 @@
 - if notice
-  %aside#notice= notice
+  %aside#notice.alert.alert-primary.alert-dismissible.fade.show= notice
 .container-fluid.m-0.p-0.text-center.p-3.row
   .row.d-flex.justify-content-center.col-10
     - @products.each do |product|
@@ -10,7 +10,7 @@
           %p.card-text= product.description
           %p.card-text
             = number_to_currency(product.price) 
-          = link_to "Add to cart", "#", :class => "btn btn-secondary m-3"  
+          = button_to "Add to cart", line_items_path(product_id: product), :class => "btn btn-secondary m-3"  
   .container.cart-contain.col-2
     .title.d-flex.justify-content-center.p-2
       %h3.m-2 Cart

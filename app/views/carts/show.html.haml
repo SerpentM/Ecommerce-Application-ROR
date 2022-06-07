@@ -1,0 +1,31 @@
+- if notice
+  %p#notice.alert.alert-primary.alert-dismissible.fade.show= notice
+.container-fluid.row
+  .title.d-flex.justify-content-start.pt-5.pb-5
+    %h3.m-2 Your Pragmatic Cart 
+    %i.fa.fa-shopping-cart.fs-2.m-2{"aria-hidden" => "true"} 
+  %table.table
+    %thead.thead-dark
+      %tr
+        %th{:scope => "col"} #
+        %th{:scope => "col"} Name
+        %th{:scope => "col"} Quantity
+        %th{:scope => "col"} Price
+    %tbody
+      - @cart.line_items.each do |item, index|
+        %tr
+          %th{:scope => "row"}= index
+          %td= item.product.title
+          %td= item.quantity
+          %td= number_to_currency(item.total_price)
+      %tr
+        %th{:scope => "row"}
+        %td
+          %h5.mt-3 Total :-
+        %td 
+        %td
+          %h5.mt-3= number_to_currency(@cart.total_price)
+  
+  
+  = button_to 'Empty cart', @cart, method: :delete, |
+    data: { confirm: 'Are you sure?' },class:"btn btn-secondary m-3 text-right " |
