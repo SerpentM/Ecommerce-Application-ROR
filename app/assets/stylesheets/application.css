@@ -32,7 +32,12 @@ tr{
 .card:hover{
  box-shadow: 5px 0 120px rgba(33,33,33,.2);
 }
-
+.myform{
+  width: 500px;
+}
+.select{
+  border-color: rgb(199, 198, 198);
+}
 .hover-1 {
     --h: 1.2em;   /* the height */
     
