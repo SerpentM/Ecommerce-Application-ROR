@@ -2,7 +2,13 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-console.log("Hello World")
+document.onload = function(){
+  console.log("Hello World")
+  var a = document.getElementById("order_pay_type")
+  a.classList.add("btn");
+  a.classList.add("select")
+}
+
 var a = document.getElementById("order_pay_type")
 a.classList.add("btn");
 a.classList.add("select")

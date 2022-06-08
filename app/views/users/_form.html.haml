@@ -1,20 +1,20 @@
-.container-fluid
-  = form_for @user do |f|
+.container-fluid.m-auto
+  = form_with(model: @user, local: true, class: 'm-auto p-5 myform') do |f|
     - if @user.errors.any?
       #error_explanation
         %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
         %ul
           - @user.errors.full_messages.each do |message|
             %li= message
-    %h2 Enter User Details
-    .field
+    %h2.text-center Create User
+    .field.form-group.p-2
       = f.label :name, "Name:"
       = f.text_field :name, size: 40
-    .field
-      = f.label :password, "Password"
+    .field.form-group.p-2
+      = f.label :password, "Password:"
       = f.password_field :password, size: 40
-    .field
+    .field.form-group.p-2
       = f.label :password_confirmation, "Confirm:"
       = f.password_field :password_confirmation, id: :user_password_confirmation, size: 40
-    .actions
-      = f.submit 'Create User'
+    .actions.form-group.p-2.text-center
+      = f.submit 'Create User', class: "btn btn-secondary"

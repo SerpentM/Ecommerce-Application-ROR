@@ -1,12 +1,14 @@
-.container-fluid
+.container-fluid.m-auto
   - if flash[:alert]
     %aside.notice= flash[:alert]
-  = form_tag do
-    .field
-      = label_tag :name, 'Name:'
-      = text_field_tag :name, params[:name]
-    .field
-      = label_tag :password, 'Password:'
-      = password_field_tag :password, params[:password]
-    .actions
-      = submit_tag "Login"
+  .m-auto.p-5.myform
+    = form_tag do
+      %h2.text-center Please Log in
+      .field.form-group.p-2
+        = label_tag :name, 'Name:'
+        = text_field_tag :name, params[:name]
+      .field.form-group.p-2
+        = label_tag :password, 'Password:'
+        = password_field_tag :password, params[:password]
+      .actions.form-group.p-2.text-center
+        = submit_tag "Login", class: "btn btn-secondary"

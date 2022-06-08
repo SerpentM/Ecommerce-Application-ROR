@@ -11,14 +11,18 @@
           -if @cart
             - @cart = Cart.find(session[:cart_id])
             = link_to  "Cart" ,cart_path(@cart), class:"nav-link "
-        %li.nav-item.dropdown
-          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
-            User Name
-          %ul.dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-            %li
-              %a.dropdown-item{:href => "#"} User Profile
-            %li
-              %a.dropdown-item{:href => "#"} Log out
+        - if User.find_by(id: session[:user_id])
+          %li.nav-item.dropdown
+            %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
+              User Name
+            %ul.dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+              %li
+                = link_to  "Orders" ,admin_path, class:"dropdown-item"
+              %li
+                = link_to  "Log out" ,logout_path, {:action => :destroy, class:"dropdown-item"}
+        - else
+          %li.nav-item.hover-1
+            = link_to  "Admin_Login" ,login_path, class:"nav-link active"
       %form.d-flex{:role => "search"}
         %input.form-control.me-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
         %button.btn.btn-outline-success{:type => "submit"} Search
